@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, request, redirect, url_for
+from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory, flash, make_response, jsonify
 from werkzeug.utils import secure_filename
 
 from shubh_predict import predict
@@ -16,6 +16,7 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
+    ans = 'shubbhang'
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -32,19 +33,38 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             ans = predict(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print("--",ans,"--")
 
-            print(">> ", ans, "<<<")
-            return redirect(url_for('upload_file',
-                                    filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+            # response = make_response(
+            #     jsonify(
+            #         {"message": ans, "severity": "danger"}
+            #     )
+            # )
+            message = ans
+
+            
+
+            return redirect(url_for('uploaded_file', filename = filename, ans = ans))
+            
+            # return redirect(url_for('uploaded_file',filename=filename))
+    print(">> ", ans, "<<<")
+    # return '''
+    # <!doctype html>
+    # <title>Upload new File</title>
+    # <h1>Upload new File</h1>
+    # <form method=post enctype=multipart/form-data>
+    #   <input type=file name=file>
+    #   <input type=submit value=Upload>
+    # </form>
+    # ''' 
+    return render_template('upload.html')
+
+@app.route('/uploads/<filename>/<ans>')
+def uploaded_file(filename, ans):
+
+    return make_response(send_from_directory(app.config['UPLOAD_FOLDER'],filename),ans)
+    # return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
+
 
 if __name__ == '__main__':
    app.run(debug = True)
