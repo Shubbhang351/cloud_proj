@@ -5,7 +5,9 @@ import tensorflow as tf
 
 print("--hello--")
 
-print("\n\n",os.getcwd(),"\n\n\n")
+print("\n\n",os.listdir(os.getcwd()),"\n\n\n")
+
+
 
 model_1 = tf.keras.models.load_model('model/shubh_model35.h5')
 
