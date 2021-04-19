@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 
-model_1 = tf.keras.models.load_model('shubh_model35.h5')
+model_1 = tf.keras.models.load_model('./shubh_model35.h5')
 
 read = lambda imname: np.asarray(Image.open(imname).convert("RGB"))
 
