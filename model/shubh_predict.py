@@ -5,6 +5,8 @@ import tensorflow as tf
 
 print("--hello--")
 
+print("\n\n",os.getcwd(),"\n\n\n")
+
 model_1 = tf.keras.models.load_model('model/shubh_model35.h5')
 
 read = lambda imname: np.asarray(Image.open(imname).convert("RGB"))
