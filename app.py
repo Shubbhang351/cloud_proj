@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 
 from model.shubh_predict import predict
 
-UPLOAD_FOLDER = 'path\\uploads'
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'path\\uploads')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
