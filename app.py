@@ -2,7 +2,7 @@ import os
 from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory, flash, make_response, jsonify
 from werkzeug.utils import secure_filename
 
-from shubh_predict import predict
+from model.shubh_predict import predict
 
 UPLOAD_FOLDER = 'path\\uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
