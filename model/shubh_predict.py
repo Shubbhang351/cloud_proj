@@ -11,7 +11,7 @@ print("\n\n\n", os.path.join(os.getcwd(), "model/shubh_model35.h5"),"\n\n\n")
 
 print("\n\n\n\n",os.path.exists(os.path.join(os.getcwd(), "model/shubh_model35.h5")),"\n\n\n")
 
-model_1 = tf.keras.models.load_model('model/shubh_model35.h5')
+model_1 = tf.keras.models.load_model(os.path.join(os.getcwd(), "model/shubh_model35.h5"))
 
 read = lambda imname: np.asarray(Image.open(imname).convert("RGB"))
 
