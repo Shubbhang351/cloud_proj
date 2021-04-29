@@ -3,15 +3,15 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 
-# print("--hello--")
+print("--hello--")
 
-# print("\n\n",os.listdir(os.getcwd()),"\n\n\n")
+print("\n\n",os.listdir(os.getcwd()),"\n\n\n")
 
-# print("\n\n\n", os.path.join(os.getcwd(), "model/shubh_model35.h5"),"\n\n\n")
+print("\n\n\n", os.path.join(os.getcwd(), "model/shubh_model35.h5"),"\n\n\n")
 
-# print("\n\n\n\n",os.path.exists(os.path.join(os.getcwd(), "model")),"\n\n\n")
+print("\n\n\n\n",os.path.exists(os.path.join(os.getcwd(), "model")),"\n\n\n")
 
-model_1 = tf.keras.models.load_model("shubh_model35.h5")
+model_1 = tf.keras.models.load_model(os.path.join(os.getcwd(), "model"))
 
 read = lambda imname: np.asarray(Image.open(imname).convert("RGB"))
 
@@ -33,7 +33,3 @@ def predict(imag_name):
         return "malignant"
 
 
-# print("yes")
-# path = "../data/benign/1.jpg"
-
-# print(predict(path))
