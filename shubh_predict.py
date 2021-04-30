@@ -11,7 +11,7 @@ import tensorflow as tf
 
 # print("\n\n\n\n",os.path.exists(os.path.join(os.getcwd(), "model")),"\n\n\n")
 
-model_1 = tf.keras.models.load_model('shubh_model35.h5')
+model_1 = tf.keras.models.load_model('./shubh_model35.h5')
 
 read = lambda imname: np.asarray(Image.open(imname).convert("RGB"))
 
